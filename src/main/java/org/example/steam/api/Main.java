@@ -1,5 +1,6 @@
 package org.example.steam.api;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -13,5 +14,10 @@ public class Main {
         DescendingSorter.printSortedDescending(names);
         System.out.println("--------");
         NumbersPrinter.printNumbers(numberStrings);
+        System.out.println("--------");
+        System.out.println(Arrays.toString(RandomInfinitySteamHandler
+                .generateRandomInfinitySteam(25214903917L, 11, 281474976710656L)
+                .limit(10)
+                .toArray()));
     }
 }
