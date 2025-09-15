@@ -1,7 +1,12 @@
 package org.example.steam.api;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello and welcome!");
+        List<String> names = List.of("Alice", "Bob", "Charlie", "David", "Eve", "Frank");
+        OddNumberPrinter.printOddNames(names);
+
+
     }
 }
