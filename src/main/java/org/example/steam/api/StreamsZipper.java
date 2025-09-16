@@ -9,11 +9,18 @@ public class StreamsZipper {
     public static <T> Stream<T> zip(Stream<T> first, Stream<T> second) {
         Iterator<T> firstIterator = first.iterator();
         Iterator<T> secondIterator = second.iterator();
-        List<T> result = new ArrayList<>();
-        while (firstIterator.hasNext() && secondIterator.hasNext()) {
-            result.add(firstIterator.next());
-            result.add(secondIterator.next());
-        }
-        return result.stream();
+
+        return Stream
+                .generate(
+                        () -> {
+                            List<T> pair = new ArrayList<>();
+                            if (firstIterator.hasNext() && secondIterator.hasNext()) {
+                                return List.of(firstIterator.next(), secondIterator.next());
+                            } else {
+                                return pair;
+                            }
+                        })
+                .takeWhile(pair -> !pair.isEmpty())
+                .flatMap(List::stream);
     }
 }
